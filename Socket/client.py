@@ -19,5 +19,3 @@ while message != "q":
 if message == "q":
     client_socket.close()
 
-
-
