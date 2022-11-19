@@ -1,43 +1,64 @@
-import socket
-
-message = "rien"
-
-
-client_socket = socket.socket()
-client_socket.connect(('127.0.0.1', 10000))
-print("Connexion établie...")
-
-
-while message != "q":
-    message = input("vous (q pour quitter) : ")
-    client_socket.send(message.encode())
-    print("Message envoyé... en attente d'une réponse")
-    data = client_socket.recv(1024).decode()
-    print(f"serveur : {data}")
-
-
-if message == "q":
-    client_socket.close()
-
 # import socket
 
-# # Create one client socket
-# client = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-# client.connect(('127.0.0.1', 10000))
-# print(f"Client connected to server")
-# client.send("Hello Server".encode())
-# data = client.recv(1024).decode()
-# print(data)
+# message = "rien"
 
-# while True:
-#     message = input("Enter your message: ") # Possible to send message to the server
-#     client.send(message.encode())
-#     if message == "exit": # Close the server when client send "exit" message
-#         client.close()
-#         break
-#     elif message == "close": # Close the client connection but not down the server if client send "close"
-#         print ("Client disconnected")
-#         break
 
-# if __name__ == '__main__':
-#     pass
+# client_socket = socket.socket()
+# client_socket.connect(('127.0.0.1', 10000))
+# print("Connexion établie...")
+
+
+# while message != "q":
+#     message = input("vous (q pour quitter) : ")
+#     client_socket.send(message.encode())
+#     print("Message envoyé... en attente d'une réponse")
+#     data = client_socket.recv(1024).decode()
+#     print(f"serveur : {data}")
+
+
+# if message == "q":
+#     client_socket.close()
+
+import socket
+import select
+import errno
+
+HEADER_LENGTH = 10
+
+IP = "127.0.0.1"
+PORT = 10000
+my_username = input("Nom: ")
+client_socket = socket.socket()
+client_socket.connect((IP, PORT))
+client_socket.setblocking(False)
+username = my_username.encode('utf-8')
+username_header = f"{len(username):<{HEADER_LENGTH}}".encode('utf-8')
+client_socket.send(username_header + username)
+while True:
+    message = input(f'{my_username} > ')
+    # Pour avoir un lecteur de message mettre en commentaire la ligne du dessus et décommenter celle du dessous
+    # message = ""
+    if message:
+        message = message.encode('utf-8')
+        message_header = f"{len(message):<{HEADER_LENGTH}}".encode('utf-8')
+        client_socket.send(message_header + message)
+    try:
+        while True:
+            username_header = client_socket.recv(HEADER_LENGTH)
+            if not len(username_header):
+                print('Connexion fermée par le serveur')
+                sys.exit()
+            username_length = int(username_header.decode('utf-8').strip())
+            username = client_socket.recv(username_length).decode('utf-8')
+            message_header = client_socket.recv(HEADER_LENGTH)
+            message_length = int(message_header.decode('utf-8').strip())
+            message = client_socket.recv(message_length).decode('utf-8')
+            print(f'{username} > {message}')
+    except IOError as e:
+        if e.errno != errno.EAGAIN and e.errno != errno.EWOULDBLOCK:
+            print('Erreur: {}'.format(str(e)))
+            sys.exit()
+        continue
+    except Exception as e:
+        print('Erreur: '.format(str(e)))
+        sys.exit()
