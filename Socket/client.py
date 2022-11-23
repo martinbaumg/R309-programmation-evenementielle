@@ -27,6 +27,7 @@ HEADER_LENGTH = 10
 
 IP = "127.0.0.1"
 PORT = 10000
+data = "rien"
 my_username = input("Nom: ")
 client_socket = socket.socket()
 client_socket.connect((IP, PORT))
