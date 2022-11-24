@@ -22,6 +22,7 @@
 import socket
 import select
 import errno
+import time
 
 HEADER_LENGTH = 10
 

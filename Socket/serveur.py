@@ -26,6 +26,7 @@
 
 import socket
 import select
+import time
 
 HEADER_LENGTH = 10
 
