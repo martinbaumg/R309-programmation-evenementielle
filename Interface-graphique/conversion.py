@@ -51,19 +51,29 @@ class Window(QWidget):
 
     def aide(self):
         QMessageBox.information(self, "Aide", "Entrez un nombre de degrés et cliquez sur convertir")
-        
+
 
     def validation(self):
-        degres = self.line_edit.text()
-        kelvin = float(degres) - 273.15
-        self.text.setText(f"{kelvin} °C")
-        self.label2.setText("K")
+        # verification que le nombre écrit est positif 
+        if self.line_edit.text() != "-1":
+            degres = self.line_edit.text()
+            kelvin = float(degres) - 273.15
+            self.text.setText(f"{kelvin} °C")
+            self.label2.setText("K")
+        else:
+            QMessageBox.critical(self, "Erreur", "Entrez un nombre positif")
+    
+
 
     def valider(self):
-        degres = self.line_edit.text()
-        kelvin = float(degres) + 273.15
-        self.text.setText(f"{kelvin} K")
-        self.label2.setText("°C")
+        try:
+            degres = self.line_edit.text()
+            kelvin = float(degres) + 273.15
+            self.text.setText(f"{kelvin} K")
+            self.label2.setText("°C")
+        except ValueError:
+            QMessageBox.critical(self, "Erreur", "Entrez un nombre")
+        
 
     def __actionQuitter(self):
         QCoreApplication.exit(0)
