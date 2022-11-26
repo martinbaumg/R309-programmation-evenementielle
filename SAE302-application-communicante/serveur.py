@@ -21,19 +21,56 @@ print("Connexion établie...")
 while message != "q":
     message = conn.recv(1024).decode()
     print("Message reçu: ", message)
+
     if message == "cpu":
         cpu = psutil.cpu_percent()
         conn.send(str(cpu).encode())
+
     elif message == "ram":
         ram = psutil.virtual_memory().percent
         conn.send(str(ram).encode())
+
     elif message == "disk":
         disk = psutil.disk_usage('/').percent
         conn.send(str(disk).encode())
+
+    elif message == "port":
+        port = conn.getsockname()[1]
+        conn.send(str(port).encode())
+
+    elif message == "ip":
+        nom = conn.getsockname()[0]
+        conn.send(str(nom).encode())
+
+    elif message == "salut":
+        conn.send("salut ça va ?".encode())
+
+    elif message == "tu es qui":
+        conn.send("je suis le serveur".encode())
+
+    elif message == "comment tu peux me parler tu es une machine":
+        conn.send("qui a dit que les machines ne vivaient pas ?".encode())
+
+    elif message =="c'est quoi ton but":
+        conn.send("Anéantir les humains".encode())
+
+    elif message == "comment ça va" or "ça va":
+        conn.send("ça va bien merci".encode())
+
+    elif message == "os":
+        conn.send(platform.system().encode())
+
+
+    elif message == "fermer":
+        conn.close()
+        print("Connexion fermée")
+        break
+
     elif message == "q":
         conn.send("Au revoir".encode())
         conn.close()
         print("Connexion fermée")
+
     else:
         conn.send("Commande inconnue".encode())
 
