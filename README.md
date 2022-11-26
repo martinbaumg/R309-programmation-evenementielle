@@ -8,5 +8,5 @@
 
 ### Mais aussi, la [SAE 302 - Développer une application communicante](https://github.com/martinbaumg/R309-programmation-evenementielle/tree/main/SAE-302-application-communicante). 
 
-- Au lancement du programme script python, vous pourrez choisir d'installer, ou non, les paquets nécessaire au bon fonctionnement de l'application.
+- Au lancement du script python, vous pourrez choisir d'installer, ou non, les paquets nécessaire au bon fonctionnement de l'application.
 Si vous voulez ignorer le téléchargement, appuyez sur n'importe quelle touche au démarrage. 
