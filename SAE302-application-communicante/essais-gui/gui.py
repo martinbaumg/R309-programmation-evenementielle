@@ -31,7 +31,7 @@ if choix != "1":
     class Window(QWidget):
         def __init__(self):
             super().__init__()
-            self.setWindowTitle("La toobox vivante")
+            self.setWindowTitle("La toolbox vivante")
             self.resize(300, 100)
             self.setup_ui()
             self.client_socket = socket.socket()
@@ -51,11 +51,11 @@ if choix != "1":
             self.button3 = QPushButton("CPU")
             self.button4 = QPushButton("RAM")
             self.button5 = QPushButton("OS")
-            self.button6 = QPushButton("Processus")
-            self.button7 = QPushButton("Threads")
+            # self.button6 = QPushButton("Processus")
+            self.button7 = QPushButton("Disk")
             self.button8 = QPushButton("IP utilisée")
             self.button9 = QPushButton("Port utilisé")
-            self.button10 = QPushButton("Nom")
+            self.button10 = QPushButton("Nom de la machine")
             self.button11 = QPushButton("Fermer")
             
 
@@ -64,8 +64,8 @@ if choix != "1":
             self.button3.clicked.connect(self.cpu)
             self.button4.clicked.connect(self.ram)
             self.button5.clicked.connect(self.os)
-            self.button6.clicked.connect(self.processus)
-            self.button7.clicked.connect(self.threads)
+            # self.button6.clicked.connect(self.processus)
+            self.button7.clicked.connect(self.disk)
             self.button8.clicked.connect(self.ip)
             self.button9.clicked.connect(self.port)
             self.button10.clicked.connect(self.nom)
@@ -82,7 +82,7 @@ if choix != "1":
             layout.addWidget(self.button3, 5, 0, 1, 2)
             layout.addWidget(self.button4, 6, 0, 1, 2)
             layout.addWidget(self.button5, 7, 0, 1, 2)
-            layout.addWidget(self.button6, 8, 0, 1, 2)
+            # layout.addWidget(self.button6, 8, 0, 1, 2)
             layout.addWidget(self.button7, 9, 0, 1, 2)
             layout.addWidget(self.button8, 10, 0, 1, 2)
             layout.addWidget(self.button9, 11, 0, 1, 2)
@@ -125,16 +125,16 @@ if choix != "1":
             print(f"serveur : {data}")
             self.text.setText(data)
 
-        def processus(self):
-            self.message = "processus"
-            self.client_socket.send(self.message.encode())
-            print("Message envoyé... en attente d'une réponse")
-            data = self.client_socket.recv(1024).decode()
-            print(f"serveur : {data}")
-            self.text.setText(data)
+        # def processus(self):
+        #     self.message = "processus"
+        #     self.client_socket.send(self.message.encode())
+        #     print("Message envoyé... en attente d'une réponse")
+        #     data = self.client_socket.recv(1024).decode()
+        #     print(f"serveur : {data}")
+        #     self.text.setText(data)
 
-        def threads(self):
-            self.message = "threads"
+        def disk(self):
+            self.message = "disk"
             self.client_socket.send(self.message.encode())
             print("Message envoyé... en attente d'une réponse")
             data = self.client_socket.recv(1024).decode()

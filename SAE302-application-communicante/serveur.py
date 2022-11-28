@@ -38,8 +38,16 @@ while message != "q":
         port = conn.getsockname()[1]
         conn.send(str(port).encode())
 
+    elif message == "os":
+        os = platform.system()
+        conn.send(str(os).encode())
+
     elif message == "ip":
         nom = conn.getsockname()[0]
+        conn.send(str(nom).encode())
+
+    elif message == "nom":
+        nom = platform.node()
         conn.send(str(nom).encode())
 
     elif message == "salut":
@@ -56,10 +64,6 @@ while message != "q":
 
     elif message == "comment ça va" or "ça va":
         conn.send("ça va bien merci".encode())
-
-    elif message == "os":
-        conn.send(platform.system().encode())
-
 
     elif message == "fermer":
         conn.close()
