@@ -19,7 +19,8 @@ while message != "q":
     print(f"de {address} : {data}")
 
 
-if message == "q":
+if message == "bye":
     conn.close()
-    server_socket.close()
 
+if message == "reset":
+    serveur_socket.close()

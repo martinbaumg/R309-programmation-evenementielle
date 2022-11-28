@@ -4,6 +4,8 @@ import threading
 import os
 import platform
 import psutil
+import netaddr
+import netifaces
 
 
 
@@ -43,8 +45,10 @@ while message != "q":
         conn.send(str(os).encode())
 
     elif message == "ip":
-        nom = conn.getsockname()[0]
-        conn.send(str(nom).encode())
+        netifaces.interfaces()
+        adresse_ip = netifaces.ifaddresses('en0')[2][0]['addr']
+        netaddr_adresse_ip = netaddr.IPAddress(adresse_ip)
+        conn.send(str(netaddr_adresse_ip).encode())
 
     elif message == "nom":
         nom = platform.node()
@@ -53,27 +57,22 @@ while message != "q":
     elif message == "salut":
         conn.send("salut ça va ?".encode())
 
-    elif message == "tu es qui":
-        conn.send("je suis le serveur".encode())
+    elif message.startswith("ls"):
+        message = message.split(" ")
+        if len(message) == 1:
+            files = os.listdir()
+            conn.send(str(files).encode())
+        elif len(message) == 2:
+            files = os.listdir(message[1])
+            conn.send(str(files).encode())
 
-    elif message == "comment tu peux me parler tu es une machine":
-        conn.send("qui a dit que les machines ne vivaient pas ?".encode())
-
-    elif message =="c'est quoi ton but":
-        conn.send("Anéantir les humains".encode())
-
-    elif message == "comment ça va" or "ça va":
-        conn.send("ça va bien merci".encode())
-
-    elif message == "fermer":
-        conn.close()
-        print("Connexion fermée")
-        break
-
-    elif message == "q":
-        conn.send("Au revoir".encode())
-        conn.close()
-        print("Connexion fermée")
+    elif message.startswith("ping"):
+        ip = message.split()[1]
+        result = os.system("ping -c 2 " + ip)
+        if result == 0:
+            conn.send("ping vers {} réussi".format(ip).encode())
+        else:
+            conn.send("pas de réponse".encode())
 
     else:
         conn.send("Commande inconnue".encode())

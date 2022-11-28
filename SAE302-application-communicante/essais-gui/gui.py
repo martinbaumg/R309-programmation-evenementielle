@@ -26,6 +26,15 @@ if choix == "1":
     os.system("python3.11 -m pip install PyQt6-sip")
     os.system("pip3 install PyQt6-sip")
     os.system("pip install PyQt6-sip")
+    os.system("pip3 install netaddr")
+    os.system("pip install netaddr")
+    os.system("python3 -m pip install netaddr")
+    os.system("python3.11 -m pip install netaddr")
+    os.system("pip3 install netifaces")
+    os.system("pip install netifaces")
+    os.system("python3 -m pip install netifaces")
+    os.system("python3.11 -m pip install netifaces")
+    os.system("pip3 install netifaces")
 
 if choix != "1":
     class Window(QWidget):
@@ -40,11 +49,21 @@ if choix != "1":
             self.message = "rien"
 
         def setup_ui(self):
-            self.label = QLabel("Message : ")
+            # self.label = QLabel("Message : ")
             self.line_edit = QLineEdit()
             self.button = QPushButton("Envoyer")
             self.button.clicked.connect(self.valider)
             self.text = QLabel("")
+
+
+    
+            # self.line_edit2 = QLineEdit()
+            # self.button12 = QPushButton("Ping")
+            # self.button12.clicked.connect(self.ping)
+            # self.text2 = QLabel("")
+        
+
+            
             self.quit = QPushButton("Quitter")
             self.quit.clicked.connect(self.__actionQuitter)
             self.button2 = QPushButton("Aide")
@@ -56,7 +75,7 @@ if choix != "1":
             self.button8 = QPushButton("IP utilisée")
             self.button9 = QPushButton("Port utilisé")
             self.button10 = QPushButton("Nom de la machine")
-            self.button11 = QPushButton("Fermer")
+            # self.button11 = QPushButton("Fermer")
             
 
             # une fenêtre apparaît quand on clique sur le bouton aide
@@ -69,15 +88,18 @@ if choix != "1":
             self.button8.clicked.connect(self.ip)
             self.button9.clicked.connect(self.port)
             self.button10.clicked.connect(self.nom)
-            self.button11.clicked.connect(self.fermer)
+            # self.button11.clicked.connect(self.fermer)
+
+
+
 
             
             layout = QGridLayout()
-            layout.addWidget(self.label, 0, 0)
-            layout.addWidget(self.line_edit, 0, 1)
-            layout.addWidget(self.button, 1, 0, 1, 2)
+            # layout.addWidget(self.label, 0, 0)
+            layout.addWidget(self.line_edit, 0, 0)
+            layout.addWidget(self.button, 0, 1)
             layout.addWidget(self.text, 2, 0, 1, 2)
-            layout.addWidget(self.quit, 3, 0, 1, 2)
+            layout.addWidget(self.quit, 13, 0, 1, 2)
             layout.addWidget(self.button2, 4, 0, 1, 2)
             layout.addWidget(self.button3, 5, 0, 1, 2)
             layout.addWidget(self.button4, 6, 0, 1, 2)
@@ -87,8 +109,12 @@ if choix != "1":
             layout.addWidget(self.button8, 10, 0, 1, 2)
             layout.addWidget(self.button9, 11, 0, 1, 2)
             layout.addWidget(self.button10, 12, 0, 1, 2)
-            layout.addWidget(self.button11, 13, 0, 1, 2)
+            # layout.addWidget(self.button11, 13, 0, 1, 2)
+            # layout.addWidget(self.line_edit2, 14, 0)
+            # layout.addWidget(self.button12, 14, 1)
+            # layout.addWidget(self.text2, 15, 0, 1, 2)
             self.setLayout(layout)
+            
 
         def valider(self):
             self.message = self.line_edit.text()
@@ -99,7 +125,7 @@ if choix != "1":
             self.text.setText(data)
 
         def aide(self):
-            QMessageBox.information(self, "Aide", "Cliquez sur un bouton pour envoyer une commande au serveur, ou demandez lui comment il va par exemple ;)")
+            QMessageBox.information(self, "Aide", "Voici la liste des commandes que vous pouvez envoyez :\n- ping {adresse}\n- ls")
 
         def cpu(self):
             self.message = "cpu"
@@ -165,14 +191,14 @@ if choix != "1":
             print(f"serveur : {data}")
             self.text.setText(data)
 
-        def fermer(self):
-            self.message = "fermer"
-            self.client_socket.send(self.message.encode())
-            print("Message envoyé... en attente d'une réponse")
-            data = self.client_socket.recv(1024).decode()
-            print(f"serveur : {data}")
-            self.text.setText(data)
-            self.close()
+        # def fermer(self):
+        #     self.message = "fermer"
+        #     self.client_socket.send(self.message.encode())
+        #     print("Message envoyé... en attente d'une réponse")
+        #     data = self.client_socket.recv(1024).decode()
+        #     print(f"serveur : {data}")
+        #     self.text.setText(data)
+        #     self.close()
 
         def closeEvent(self, event):
             self.client_socket.close()

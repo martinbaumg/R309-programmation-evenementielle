@@ -17,7 +17,9 @@ while message != "bye":
 
 
 if message == "bye":
-    client_socket.close()
+    conn.close()
 
+if message == "reset":
+    serveur_socket.close()
 
 
