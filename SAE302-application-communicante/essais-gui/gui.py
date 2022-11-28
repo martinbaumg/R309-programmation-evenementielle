@@ -54,15 +54,6 @@ if choix != "1":
             self.button = QPushButton("Envoyer")
             self.button.clicked.connect(self.valider)
             self.text = QLabel("")
-
-
-    
-            # self.line_edit2 = QLineEdit()
-            # self.button12 = QPushButton("Ping")
-            # self.button12.clicked.connect(self.ping)
-            # self.text2 = QLabel("")
-        
-
             
             self.quit = QPushButton("Quitter")
             self.quit.clicked.connect(self.__actionQuitter)
@@ -72,7 +63,7 @@ if choix != "1":
             self.button5 = QPushButton("OS")
             # self.button6 = QPushButton("Processus")
             self.button7 = QPushButton("Disk")
-            self.button8 = QPushButton("IP utilisée")
+            self.button8 = QPushButton("IP")
             self.button9 = QPushButton("Port utilisé")
             self.button10 = QPushButton("Nom de la machine")
             # self.button11 = QPushButton("Fermer")
@@ -89,10 +80,6 @@ if choix != "1":
             self.button9.clicked.connect(self.port)
             self.button10.clicked.connect(self.nom)
             # self.button11.clicked.connect(self.fermer)
-
-
-
-
             
             layout = QGridLayout()
             # layout.addWidget(self.label, 0, 0)
@@ -151,14 +138,6 @@ if choix != "1":
             print(f"serveur : {data}")
             self.text.setText(data)
 
-        # def processus(self):
-        #     self.message = "processus"
-        #     self.client_socket.send(self.message.encode())
-        #     print("Message envoyé... en attente d'une réponse")
-        #     data = self.client_socket.recv(1024).decode()
-        #     print(f"serveur : {data}")
-        #     self.text.setText(data)
-
         def disk(self):
             self.message = "disk"
             self.client_socket.send(self.message.encode())
@@ -173,7 +152,7 @@ if choix != "1":
             print("Message envoyé... en attente d'une réponse")
             data = self.client_socket.recv(1024).decode()
             print(f"serveur : {data}")
-            self.text.setText(data)
+            self.text.setText("IP de la machine : " + data)
 
         def port(self):
             self.message = "port"
@@ -191,15 +170,6 @@ if choix != "1":
             print(f"serveur : {data}")
             self.text.setText(data)
 
-        # def fermer(self):
-        #     self.message = "fermer"
-        #     self.client_socket.send(self.message.encode())
-        #     print("Message envoyé... en attente d'une réponse")
-        #     data = self.client_socket.recv(1024).decode()
-        #     print(f"serveur : {data}")
-        #     self.text.setText(data)
-        #     self.close()
-
         def closeEvent(self, event):
             self.client_socket.close()
             print("Connexion fermée")
@@ -214,27 +184,3 @@ if choix != "1":
         window = Window()
         window.show()
         app.exec()
-
-
-
-
-
-
-# message = "rien"
-
-
-# client_socket = socket.socket()
-# client_socket.connect(('127.0.0.1', 10000))
-# print("Connexion établie...")
-
-
-# while message != "q":
-#     message = input("vous (q pour quitter) : ")
-#     client_socket.send(message.encode())
-#     print("Message envoyé... en attente d'une réponse")
-#     data = client_socket.recv(1024).decode()
-#     print(f"serveur : {data}")
-
-
-# if message == "q":
-#     client_socket.close()
