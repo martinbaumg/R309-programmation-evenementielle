@@ -53,7 +53,10 @@ if choix != "1":
             self.line_edit = QLineEdit()
             self.button = QPushButton("Envoyer")
             self.button.clicked.connect(self.valider)
-            self.text = QLabel("")
+            # modifier la couleur de la zone de texte
+            self.line_edit.setStyleSheet("background-color: white; color: black")
+            self.text = QLabel("\n\n\n")
+            self.text.setStyleSheet("background-color: white; color: black")
             
             self.quit = QPushButton("Quitter")
             self.quit.clicked.connect(self.__actionQuitter)
