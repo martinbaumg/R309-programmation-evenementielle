@@ -7,9 +7,6 @@ import psutil
 import netaddr
 import netifaces
 
-
-
-
 message = "rien"
 
 server_socket = socket.socket()

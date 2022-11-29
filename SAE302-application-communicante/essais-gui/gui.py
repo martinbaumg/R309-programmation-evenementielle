@@ -50,13 +50,13 @@ if choix != "1":
 
         def setup_ui(self):
             # self.label = QLabel("Message : ")
-            self.line_edit = QLineEdit()
+            self.line_edit = QLineEdit("")
             self.button = QPushButton("Envoyer")
             self.button.clicked.connect(self.valider)
             # modifier la couleur de la zone de texte
             self.line_edit.setStyleSheet("background-color: white; color: black")
-            self.text = QLabel("\n\n\n")
-            self.text.setStyleSheet("background-color: white; color: black")
+            self.text = QLabel("\n")
+            self.text.setStyleSheet("padding: 5px 5px; background-color: white; color: black")
             
             self.quit = QPushButton("Quitter")
             self.quit.clicked.connect(self.__actionQuitter)
@@ -68,7 +68,7 @@ if choix != "1":
             self.button7 = QPushButton("Disk")
             self.button8 = QPushButton("IP")
             self.button9 = QPushButton("Port utilisé")
-            self.button10 = QPushButton("Nom de la machine")
+            self.button10 = QPushButton("Nom")
             # self.button11 = QPushButton("Fermer")
             
 
@@ -86,19 +86,19 @@ if choix != "1":
             
             layout = QGridLayout()
             # layout.addWidget(self.label, 0, 0)
-            layout.addWidget(self.line_edit, 0, 0)
-            layout.addWidget(self.button, 0, 1)
+            layout.addWidget(self.line_edit, 0, 0, 1, 0)
+            layout.addWidget(self.button, 0, 1, 1, 1)
             layout.addWidget(self.text, 2, 0, 1, 2)
             layout.addWidget(self.quit, 13, 0, 1, 2)
-            layout.addWidget(self.button2, 4, 0, 1, 2)
-            layout.addWidget(self.button3, 5, 0, 1, 2)
-            layout.addWidget(self.button4, 6, 0, 1, 2)
-            layout.addWidget(self.button5, 7, 0, 1, 2)
+            layout.addWidget(self.button2, 4, 0, 1, 1)
+            layout.addWidget(self.button3, 5, 0, 1, 1)
+            layout.addWidget(self.button4, 5, 1, 1, 1)
+            layout.addWidget(self.button5, 7, 0, 1, 1)
             # layout.addWidget(self.button6, 8, 0, 1, 2)
-            layout.addWidget(self.button7, 9, 0, 1, 2)
-            layout.addWidget(self.button8, 10, 0, 1, 2)
-            layout.addWidget(self.button9, 11, 0, 1, 2)
-            layout.addWidget(self.button10, 12, 0, 1, 2)
+            layout.addWidget(self.button7, 7, 1, 1, 1)
+            layout.addWidget(self.button8, 11, 0, 1, 1)
+            layout.addWidget(self.button9, 11, 1, 1, 1)
+            layout.addWidget(self.button10, 4, 1, 1, 1)
             # layout.addWidget(self.button11, 13, 0, 1, 2)
             # layout.addWidget(self.line_edit2, 14, 0)
             # layout.addWidget(self.button12, 14, 1)
@@ -108,11 +108,12 @@ if choix != "1":
 
         def valider(self):
             self.message = self.line_edit.text()
+            saisie = self.line_edit.text()
             self.client_socket.send(self.message.encode())
             print("Message envoyé... en attente d'une réponse")
             data = self.client_socket.recv(1024).decode()
             print(f"serveur : {data}")
-            self.text.setText(data)
+            self.text.setText(f"Vous> {saisie}\nServeur> {data}")
 
         def aide(self):
             QMessageBox.information(self, "Aide", "Voici la liste des commandes que vous pouvez envoyez :\n- ping {adresse}\n- ls")
@@ -123,7 +124,7 @@ if choix != "1":
             print("Message envoyé... en attente d'une réponse")
             data = self.client_socket.recv(1024).decode()
             print(f"serveur : {data}")
-            self.text.setText(data + "% utilisés")
+            self.text.setText("Vous> CPU\nServeur> " + data + "% utilisés")
 
         def ram(self):
             self.message = "ram"
@@ -131,7 +132,7 @@ if choix != "1":
             print("Message envoyé... en attente d'une réponse")
             data = self.client_socket.recv(1024).decode()
             print(f"serveur : {data}")
-            self.text.setText(data + "% utilisés")
+            self.text.setText("Vous> RAM\nServeur> " + data + "% utilisés")
 
         def os(self):
             self.message = "os"
@@ -139,7 +140,7 @@ if choix != "1":
             print("Message envoyé... en attente d'une réponse")
             data = self.client_socket.recv(1024).decode()
             print(f"serveur : {data}")
-            self.text.setText(data)
+            self.text.setText("Vous> OS\nServeur> " + data)
 
         def disk(self):
             self.message = "disk"
@@ -147,7 +148,7 @@ if choix != "1":
             print("Message envoyé... en attente d'une réponse")
             data = self.client_socket.recv(1024).decode()
             print(f"serveur : {data}")
-            self.text.setText(data)
+            self.text.setText("Vous> DISK\nServeur> " + data)
 
         def ip(self):
             self.message = "ip"
@@ -155,7 +156,7 @@ if choix != "1":
             print("Message envoyé... en attente d'une réponse")
             data = self.client_socket.recv(1024).decode()
             print(f"serveur : {data}")
-            self.text.setText("IP de la machine : " + data)
+            self.text.setText("Vous> IP\nServeur> " + data)
 
         def port(self):
             self.message = "port"
@@ -163,7 +164,7 @@ if choix != "1":
             print("Message envoyé... en attente d'une réponse")
             data = self.client_socket.recv(1024).decode()
             print(f"serveur : {data}")
-            self.text.setText(data)
+            self.text.setText("Vous> PORT\nServeur> " + data)
 
         def nom(self):
             self.message = "nom"
@@ -171,7 +172,7 @@ if choix != "1":
             print("Message envoyé... en attente d'une réponse")
             data = self.client_socket.recv(1024).decode()
             print(f"serveur : {data}")
-            self.text.setText(data)
+            self.text.setText("Vous> NOM\nServeur> " + data)
 
         def closeEvent(self, event):
             self.client_socket.close()
