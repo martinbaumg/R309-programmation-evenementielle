@@ -1,4 +1,7 @@
-
+import threading
+import os
+import platform
+import sys
 
 
 # une fenêtre qui permet de se connecter à un serveur socket et qui propose plusieurs boutons qui permettent d'envoyer des messages au serveur et qui affichent le résultat de la commande envoyée
@@ -27,16 +30,17 @@ if choix == "1":
     os.system("python3 -m pip install netifaces")
     os.system("python3.11 -m pip install netifaces")
     os.system("pip3 install netifaces")
+    os.system("pip install socket")
+    os.system("python3 -m pip install socket")
+    os.system("python3.11 -m pip install socket")
+    os.system("pip3 install socket")
 
 
-import sys
 from PyQt6.QtWidgets import QApplication, QWidget, QPushButton, QToolTip, QMessageBox, QMainWindow, QGridLayout, QLabel, QLineEdit, QComboBox
 import socket
 import setuptools
 import psutil
-import threading
-import os
-import platform
+
 
 
 if choix != "1":
