@@ -15,3 +15,5 @@ Si vous voulez ignorer le téléchargement, appuyez sur n'importe quelle touche 
 - psutil
 - netaddr
 - netifaces
+
+J'ai utilisé la version 6 de PyQt, car la version 5 ne fonctionnait pas sur ma machine. 
