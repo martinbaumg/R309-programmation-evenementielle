@@ -8,7 +8,7 @@
 
 ### Mais aussi, la [SAE 302 - Développer une application communicante.](https://github.com/martinbaumg/R309-programmation-evenementielle/tree/main/SAE302-application-communicante)
 
-- Au lancement du script python  , vous pourrez choisir d'installer, ou non, les paquets nécessaire au bon fonctionnement de l'application.
+- Au lancement du script python **gui.py**, vous pourrez choisir d'installer, ou non, les paquets nécessaire au bon fonctionnement de l'application.
 Si vous voulez ignorer le téléchargement, appuyez sur n'importe quelle touche au démarrage. Pour information, les paquets requis au bon fonctionnement du programme sont : 
 
 - PyQt6
@@ -19,6 +19,6 @@ Si vous voulez ignorer le téléchargement, appuyez sur n'importe quelle touche 
 J'ai utilisé la version 6 de PyQt, car la version 5 ne fonctionnait pas sur ma machine. 
 
 Voici comment mettre en gras un texte sur GitHub : 
-```markdown
-**texte en gras**
-```
+
+
+
