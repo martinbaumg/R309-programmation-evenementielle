@@ -2,6 +2,7 @@ import threading
 import os
 import platform
 import sys
+import shutil
 
 
 # une fenêtre qui permet de se connecter à un serveur socket et qui propose plusieurs boutons qui permettent d'envoyer des messages au serveur et qui affichent le résultat de la commande envoyée
@@ -169,12 +170,12 @@ if choix != "1":
             self.text.setText("Vous> OS\nServeur> " + data)
 
         def disk(self):
-            self.message = "disk"
+            self.message = "stockage"
             self.client_socket.send(self.message.encode())
             print("Message envoyé... en attente d'une réponse")
             data = self.client_socket.recv(1024).decode()
             print(f"serveur : {data}")
-            self.text.setText("Vous> DISK\nServeur> " + data)
+            self.text.setText("Vous> DISK\nServeur> " + data + "% disponibles")
 
         def ip(self):
             self.message = "ip"

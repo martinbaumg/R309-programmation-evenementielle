@@ -6,6 +6,7 @@ import platform
 import psutil
 import netaddr
 import netifaces
+import shutil
 
 message = "rien"
 server_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
@@ -23,7 +24,7 @@ server_socket.listen(1)
 
 conn, address = server_socket.accept()
 print("Connexion établie...")
-while message != "q":
+while message != "":
     message = conn.recv(1024).decode()
     print("Message reçu: ", message)
 
@@ -35,8 +36,9 @@ while message != "q":
         ram = psutil.virtual_memory().percent
         conn.send(str(ram).encode())
 
-    elif message == "disk":
-        disk = psutil.disk_usage('/').percent
+    elif message == "stockage":
+        disk = shutil.disk_usage("/")
+        disk = disk.free / disk.total * 100
         conn.send(str(disk).encode())
 
     elif message == "port":
@@ -70,7 +72,6 @@ while message != "q":
             conn.send("Commande dir".encode())
         else:
             conn.send("Inompatable avec l'OS".encode())
-    
 
     elif message.startswith("ls") and platform.system() == "Darwin":
         message = message.split(" ")
@@ -90,4 +91,9 @@ while message != "q":
             conn.send("pas de réponse".encode())
 
     else:
-        conn.send("Commande inconnue ou incompatible avec l'OS".encode())
+        os.system(message)
+        result = os.popen(message).read()
+        if result == 0:
+            conn.send("Commande exécutée".encode())
+        else :
+            conn.send("Commande inconnue ou incompatible avec l'OS".encode())
