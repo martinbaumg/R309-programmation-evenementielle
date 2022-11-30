@@ -69,6 +69,7 @@ if choix != "1":
             self.button8 = QPushButton("IP")
             self.button9 = QPushButton("Port utilisé")
             self.button10 = QPushButton("Nom")
+            self.line_edit2 = QLineEdit("")
             # self.button11 = QPushButton("Fermer")
             
 
@@ -86,6 +87,7 @@ if choix != "1":
             
             layout = QGridLayout()
             # layout.addWidget(self.label, 0, 0)
+            layout.addWidget(self.line_edit, 0, 0)
             layout.addWidget(self.line_edit, 0, 0, 1, 0)
             layout.addWidget(self.button, 0, 1, 1, 1)
             layout.addWidget(self.text, 2, 0, 1, 2)
