@@ -127,6 +127,8 @@ if choix != "1":
             self.client_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
             self.client_socket.connect((ip, port))
             print("Connexion établie...")
+            # une fenêtre apparait pour dire que la connexion a réussi 
+            QMessageBox.information(self, "Connexion", "Connexion réussie !")
             self.message = "rien"
 
 
