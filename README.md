@@ -17,11 +17,15 @@ Si vous voulez ignorer le téléchargement, appuyez sur n'importe quelle touche 
 - netifaces
 
 J'ai utilisé la version 6 de PyQt, car la version 5 ne fonctionnait pas sur ma machine. Une fois ces paquets fait. Vous pourrez lancer le script **serveur.py**, puis **gui.py**.
-Pour lancer les scripts, je faisais au début 
+Pour lancer les scripts, je faisais au début :
 ```bash
 python3 serveur.py
 ```
+Mais j'avais des erreurs, PyQt6 n'était pas reconnu, alors j'ai changé d'intérpreteur, et j'ai utilisé **python3.11** en faisant donc : 
 ```bash
+python3.11 serveur.py
+```
+Et ça a fonctionné. Alors je vous suggère de changer d'intérpreteur pour lancer les scripts, si vous avez des erreurs.
 
 
 
