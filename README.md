@@ -26,6 +26,7 @@ Mais j'avais des erreurs, PyQt6 n'était pas reconnu, alors j'ai changé d'inté
 python3.11 serveur.py
 ```
 Et ça a fonctionné. Alors je vous suggère de changer d'intérpreteur pour lancer les scripts, si vous avez des erreurs.
-
-
+Au lancement du serveur, une adresse IP et un port vous sera demandé, rentrez alors l'adresse IP que vous souhaitez ainsi que le port voulu. Sinon, vous pouvez laisser les valeurs par défaut en appuyant sur **ENTER**, qui sont :
+- Adresse IP : 127.0.0.1
+- Port : 10000
 

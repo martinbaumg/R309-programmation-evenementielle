@@ -34,13 +34,6 @@ if choix == "1":
     os.system("python3 -m pip install socket")
     os.system("python3.11 -m pip install socket")
     os.system("pip3 install socket")
-    # installer netifaces sur windows 
-    # os.system("pip3 install netifaces")
-    # os.system("pip install netifaces")
-    # os.system("python3 -m pip install netifaces")
-    # os.system("python3.11 -m pip install netifaces")
-    # os.system("pip3 install netifaces")
-
 
 
 from PyQt6.QtWidgets import QApplication, QWidget, QPushButton, QToolTip, QMessageBox, QMainWindow, QGridLayout, QLabel, QLineEdit, QComboBox
@@ -48,9 +41,7 @@ import socket
 import setuptools
 import psutil
 import netaddr
-# import netifaces
-
-
+import netifaces
 
 if choix != "1":
     class Window(QWidget):
@@ -59,20 +50,20 @@ if choix != "1":
             self.setWindowTitle("La toolbox vivante")
             self.resize(300, 100)
             self.setup_ui()
-            self.client_socket = socket.socket()
-            self.client_socket.connect(('127.0.0.1', 10000))
-            print("Connexion établie...")
-            self.message = "rien"
+            
 
         def setup_ui(self):
 
-
+            self.line_edit3 = QLineEdit("")
+            self.line_edit3.setPlaceholderText("adresse:port")
+            self.button13 = QPushButton("Me connecter")
             # self.label = QLabel("Message : ")
             self.line_edit = QLineEdit("")
+            self.line_edit.setPlaceholderText("saississez ici")
             self.button = QPushButton("Envoyer")
             self.button.clicked.connect(self.valider)
             # modifier la couleur de la zone de texte
-            self.line_edit.setStyleSheet("background-color: white; color: black")
+            self.line_edit.setStyleSheet("background-color: white")
             self.text = QLabel("\n")
             self.text.setStyleSheet("padding: 5px 5px; background-color: white; color: black")
             
@@ -101,6 +92,7 @@ if choix != "1":
             self.button8.clicked.connect(self.ip)
             self.button9.clicked.connect(self.port)
             self.button10.clicked.connect(self.nom)
+            self.button13.clicked.connect(self.connect)
             # self.button11.clicked.connect(self.fermer)
             
             layout = QGridLayout()
@@ -123,9 +115,20 @@ if choix != "1":
             # layout.addWidget(self.line_edit2, 14, 0)
             # layout.addWidget(self.button12, 14, 1)
             # layout.addWidget(self.text2, 15, 0, 1, 2)
+            layout.addWidget(self.line_edit3, 16, 0)
+            layout.addWidget(self.button13, 16, 1)
             self.setLayout(layout)
 
     
+        def connect(self):
+            addr = self.line_edit3.text()
+            port = int(addr.split(":")[1])
+            ip = addr.split(":")[0]
+            self.client_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+            self.client_socket.connect((ip, port))
+            print("Connexion établie...")
+            self.message = "rien"
+
 
         def valider(self):
             self.message = self.line_edit.text()

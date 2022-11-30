@@ -5,13 +5,19 @@ import os
 import platform
 import psutil
 import netaddr
-# import netifaces
+import netifaces
 
 message = "rien"
-
-server_socket = socket.socket()
+server_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+ip = input("Entrer l'adresse IP du serveur : (appuyez sur ENTER pour avoir les valeurs par défaut) ")
+if ip == "":
+    ip = "127.0.0.1"
+    port = 10000
+else:
+    port = int(input("Entrer le port du serveur : "))
+server_socket.bind((ip, port))
 print("Socket crée, en attente du client...")
-server_socket.bind(('127.0.0.1', 10000))
+
 server_socket.listen(1)
 
 
