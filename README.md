@@ -16,9 +16,12 @@ Si vous voulez ignorer le téléchargement, appuyez sur n'importe quelle touche 
 - netaddr
 - netifaces
 
-J'ai utilisé la version 6 de PyQt, car la version 5 ne fonctionnait pas sur ma machine. 
-
-Voici comment mettre en gras un texte sur GitHub : 
+J'ai utilisé la version 6 de PyQt, car la version 5 ne fonctionnait pas sur ma machine. Une fois ces paquets fait. Vous pourrez lancer le script **serveur.py**, puis **gui.py**.
+Pour lancer les scripts, je faisais au début 
+```bash
+python3 serveur.py
+```
+```bash
 
 
 
