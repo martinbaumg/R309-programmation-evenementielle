@@ -1,11 +1,3 @@
-import sys
-from PyQt6.QtWidgets import QApplication, QWidget, QPushButton, QToolTip, QMessageBox, QMainWindow, QGridLayout, QLabel, QLineEdit, QComboBox
-import socket
-import setuptools
-import psutil
-import threading
-import os
-import platform
 
 
 
@@ -36,6 +28,17 @@ if choix == "1":
     os.system("python3.11 -m pip install netifaces")
     os.system("pip3 install netifaces")
 
+
+import sys
+from PyQt6.QtWidgets import QApplication, QWidget, QPushButton, QToolTip, QMessageBox, QMainWindow, QGridLayout, QLabel, QLineEdit, QComboBox
+import socket
+import setuptools
+import psutil
+import threading
+import os
+import platform
+
+
 if choix != "1":
     class Window(QWidget):
         def __init__(self):
@@ -49,6 +52,8 @@ if choix != "1":
             self.message = "rien"
 
         def setup_ui(self):
+
+
             # self.label = QLabel("Message : ")
             self.line_edit = QLineEdit("")
             self.button = QPushButton("Envoyer")
@@ -106,7 +111,8 @@ if choix != "1":
             # layout.addWidget(self.button12, 14, 1)
             # layout.addWidget(self.text2, 15, 0, 1, 2)
             self.setLayout(layout)
-            
+
+    
 
         def valider(self):
             self.message = self.line_edit.text()
