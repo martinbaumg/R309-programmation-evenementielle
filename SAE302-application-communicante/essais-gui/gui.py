@@ -34,12 +34,21 @@ if choix == "1":
     os.system("python3 -m pip install socket")
     os.system("python3.11 -m pip install socket")
     os.system("pip3 install socket")
+    # installer netifaces sur windows 
+    # os.system("pip3 install netifaces")
+    # os.system("pip install netifaces")
+    # os.system("python3 -m pip install netifaces")
+    # os.system("python3.11 -m pip install netifaces")
+    # os.system("pip3 install netifaces")
+
 
 
 from PyQt6.QtWidgets import QApplication, QWidget, QPushButton, QToolTip, QMessageBox, QMainWindow, QGridLayout, QLabel, QLineEdit, QComboBox
 import socket
 import setuptools
 import psutil
+import netaddr
+# import netifaces
 
 
 

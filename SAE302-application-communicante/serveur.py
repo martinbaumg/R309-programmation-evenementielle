@@ -5,7 +5,7 @@ import os
 import platform
 import psutil
 import netaddr
-import netifaces
+# import netifaces
 
 message = "rien"
 
