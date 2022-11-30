@@ -60,7 +60,19 @@ while message != "q":
     elif message == "salut":
         conn.send("salut ça va ?".encode())
 
-    elif message.startswith("ls"):
+    elif message.startswith("python --v"):
+        version = platform.python_version()
+        conn.send(str(version).encode())
+
+    elif message.startswith("dir"):
+        if platform.system() == "Windows":
+            os.system("dir")
+            conn.send("Commande dir".encode())
+        else:
+            conn.send("Inompatable avec l'OS".encode())
+    
+
+    elif message.startswith("ls") and platform.system() == "Darwin":
         message = message.split(" ")
         if len(message) == 1:
             files = os.listdir()
@@ -71,11 +83,11 @@ while message != "q":
 
     elif message.startswith("ping"):
         ip = message.split()[1]
-        result = os.system("ping -c 2 " + ip)
+        result = os.system("ping -c 1 " + ip)
         if result == 0:
             conn.send("ping vers {} réussi".format(ip).encode())
         else:
             conn.send("pas de réponse".encode())
 
     else:
-        conn.send("Commande inconnue".encode())
+        conn.send("Commande inconnue ou incompatible avec l'OS".encode())
