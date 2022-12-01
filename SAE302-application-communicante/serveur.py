@@ -7,6 +7,7 @@ import psutil
 import netaddr
 import netifaces
 import shutil
+import subprocess
 
 message = "rien"
 server_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
@@ -39,6 +40,8 @@ while message != "":
     elif message == "stockage":
         disk = shutil.disk_usage("/")
         disk = disk.free / disk.total * 100
+        # garder uniquement 2 chiffres après la virgule
+        disk = round(disk, 2)
         conn.send(str(disk).encode())
 
     elif message == "port":
@@ -73,14 +76,14 @@ while message != "":
         else:
             conn.send("Inompatable avec l'OS".encode())
 
-    elif message.startswith("ls") and platform.system() == "Darwin":
-        message = message.split(" ")
-        if len(message) == 1:
-            files = os.listdir()
-            conn.send(str(files).encode())
-        elif len(message) == 2:
-            files = os.listdir(message[1])
-            conn.send(str(files).encode())
+    # elif message.startswith("ls") and platform.system() == "Darwin":
+    #     message = message.split(" ")
+    #     if len(message) == 1:
+    #         files = os.listdir()
+    #         conn.send(str(files).encode())
+    #     elif len(message) == 2:
+    #         files = os.listdir(message[1])
+    #         conn.send(str(files).encode())
 
     elif message.startswith("ping"):
         ip = message.split()[1]
@@ -90,10 +93,56 @@ while message != "":
         else:
             conn.send("pas de réponse".encode())
 
+
+    # else:
+    #     try:
+    #         command = message
+    #         output = subprocess.check_output(command, shell=True)
+    #         if output != 0:
+    #             output = "Commande exécutée"
+    #         else:
+    #             conn.send(output)
+    #     except Exception as e:
+    #         conn.send(f"Error returned by server: {e}".encode('utf-8'))
+
+
+    # else:
+    #     os.system(message)
+    #     result = int(subprocess.getoutput(os.system(message)).listen("True"))
+    #     if result != 0:
+    #         conn.send("Commande exécutée".encode())
+    #     else :
+    #         conn.send("Commande inconnue ou incompatible avec l'OS".encode())
+
+
+    # else:
+    #     os.system(message)
+    #     result = os.popen(message).read()
+    #     if result != 0:
+    #         conn.send("Commande exécutée".encode())
+    #     else :
+    #         conn.send("Commande inconnue ou incompatible avec l'OS".encode())
+
+    # else:
+    #     cmd = os.popen(message).read()
+    #     var = os.system(message)
+    #     if var != 0:
+    #         conn.send("Commande inconnue".encode())
+    #     else:
+    #         conn.send(cmd.encode())
+    # print("Message envoyé: ", message)
+
     else:
-        os.system(message)
-        result = os.popen(message).read()
-        if result == 0:
-            conn.send("Commande exécutée".encode())
-        else :
-            conn.send("Commande inconnue ou incompatible avec l'OS".encode())
+        cmd = message
+        verif = os.system(cmd)
+        print(verif)
+        msg = os.popen(cmd).read()
+        print(f'----------- {msg}')
+        if verif == 0:
+            if msg != "":
+                conn.send(msg.encode())
+            else:
+                conn.send(f"{cmd} éxecuté avec succès".encode())
+        else:
+            msg=str(f'{cmd} commande impossible')
+            conn.send(msg.encode())
