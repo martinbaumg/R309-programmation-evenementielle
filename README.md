@@ -39,4 +39,4 @@ Si vous voulez ignorer le téléchargement, appuyez sur n'importe quelle touche 
 
 Une fois, les paquets installés, vous pourrez lancer l'application. Vous aurez alors une fenêtre comme celle-ci :
 
-![image](https://user-images.githubusercontent.com/77620159/135748000-1b2b2b5b-5b5a-4b2a-9b1a-3c1f2b2b2b2b.png)
+![alt text](https://github.com/martinbaumg/R309-programmation-evenementielle/tree/main/SAE302-application-communicante/img/img1.png)
