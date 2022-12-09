@@ -40,3 +40,5 @@ Si vous voulez ignorer le téléchargement, appuyez sur n'importe quelle touche 
 Une fois, les paquets installés, vous pourrez lancer l'application. Vous aurez alors une fenêtre comme celle-ci :
 
 ![alt text](https://github.com/martinbaumg/R309-programmation-evenementielle/blob/main/SAE302-application-communicante/img/img1.png)
+
+Il faudra venir ensuite rentrer dans la partie concerner l'adresse IP et le port que vous avez défini sur le serveur. Une fois connecté, un message de connexion apparaîtra et vous pourrez commencer à utiliser le programme.
