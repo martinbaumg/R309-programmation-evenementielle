@@ -37,7 +37,7 @@ if choix == "1":
     os.system("pip3 install socket")
 
 
-from PyQt6.QtWidgets import QApplication, QWidget, QPushButton, QToolTip, QMessageBox, QMainWindow, QGridLayout, QLabel, QLineEdit, QComboBox
+from PyQt5.QtWidgets import QApplication, QWidget, QPushButton, QToolTip, QMessageBox, QMainWindow, QGridLayout, QLabel, QLineEdit, QComboBox
 import socket
 import setuptools
 import psutil
