@@ -11,6 +11,8 @@ choix = input("Appuyez sur 1 pour installer les paquets requis, appuyez sur nimp
 
 if choix == "1":
     os.system("sudo apt install python3-pyqt5")
+    os.system("sudo apt install psutils")
+    os.system("sudo apt install socket")
     os.system("pip3 install psutil")
     os.system("pip install psutil")
     os.system("python3.11 -m pip install psutil")
