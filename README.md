@@ -43,3 +43,5 @@ Une fois, les paquets installés, vous pourrez lancer l'application. Vous aurez 
 ![alt text](https://github.com/martinbaumg/R309-programmation-evenementielle/blob/main/SAE302-application-communicante/img/img1.png)
 
 Il faudra venir ensuite rentrer dans la partie concerner l'adresse IP et le port que vous avez défini sur le serveur. Une fois connecté, un message de connexion apparaîtra et vous pourrez commencer à utiliser le programme.
+
+Le programme a été testé sur une machine debian 11 avec python3 installé par défaut et par l'installation de tous les paquets à l'aide du script présent dans **gui.py** avec le choix **1** au démarrage.

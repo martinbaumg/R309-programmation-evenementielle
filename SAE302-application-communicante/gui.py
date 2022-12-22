@@ -55,7 +55,7 @@ if choix != "1":
     class Window(QWidget):
         def __init__(self):
             super().__init__()
-            self.setWindowTitle("SAE 302")
+            self.setWindowTitle("La toolbox vivante")
             self.resize(300, 100)
             self.setup_ui()
             
@@ -150,7 +150,7 @@ if choix != "1":
             self.text.setText(f"Vous> {saisie}\nServeur> {data}")
 
         def aide(self):
-            QMessageBox.information(self, "Aide", "Voici la liste des commandes que vous pouvez envoyez :\n- ping {adresse}\n- ls")
+            QMessageBox.information(self, "Aide", "Voici la liste des commandes que vous pouvez envoyez :\n- ping {adresse}\n- ls\nEt un peu toutes les autres commandes que vous souhaitez envoyer tant qu'elles sont prises en charge par votre OS")
 
         def cpu(self):
             self.message = "cpu"
