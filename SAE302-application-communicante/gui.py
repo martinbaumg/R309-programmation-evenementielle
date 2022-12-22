@@ -55,7 +55,7 @@ if choix != "1":
     class Window(QWidget):
         def __init__(self):
             super().__init__()
-            self.setWindowTitle("La toolbox vivante")
+            self.setWindowTitle("SAE 302")
             self.resize(300, 100)
             self.setup_ui()
             
