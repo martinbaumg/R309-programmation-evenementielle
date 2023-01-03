@@ -33,9 +33,7 @@ class Window(QWidget):
         self.text_edit = QTextEdit()
         self.text_edit.setReadOnly(True)
 
-
         self.button.clicked.connect(self.demarrer_serveur)
-
 
         layout = QGridLayout()
         layout.addWidget(self.label, 0, 0)
@@ -72,8 +70,6 @@ class Window(QWidget):
         self.text_edit.clear()
 
 
-    # fonction pour recevoir les messages des clients et les afficher
-
     def ecoute(self):
         while True:
             self.connexion, self.adresse = self.serveur.accept()
@@ -87,8 +83,6 @@ class Window(QWidget):
             self.text_edit.append(self.message_recu)
             self.label3.setText("Nombre de clients connectés : {}".format(len(threading.enumerate())-2))
         
-
-
     
 
 if __name__ == "__main__":
