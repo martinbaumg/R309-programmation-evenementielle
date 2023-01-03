@@ -2,7 +2,6 @@
  
 ### Dans ce repository, vous trouverez les différentes parties du cours : 
 - [Thread](https://github.com/martinbaumg/R309-programmation-evenementielle/tree/main/Thread)
-- [Exception](https://github.com/martinbaumg/R309-programmation-evenementielle/tree/main/Exception)
 - [Interface graphique](https://github.com/martinbaumg/R309-programmation-evenementielle/tree/main/Interface-graphique)
 - [Socket](https://github.com/martinbaumg/R309-programmation-evenementielle/tree/main/Socket)
 ### Et surtout l'examen final : 
